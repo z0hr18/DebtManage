@@ -8,7 +8,7 @@
 import UIKit
 
 final class TabBarController: UITabBarController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpTabUI()
@@ -20,17 +20,13 @@ final class TabBarController: UITabBarController {
         
         let receivables = UINavigationController(rootViewController: ReceivablesViewController())
         receivables.tabBarItem = UITabBarItem(title: "Receivables", image: UIImage(systemName: "house"), selectedImage: nil)
-
+        
         let payments = UINavigationController(rootViewController: PaymentsViewController())
         payments.tabBarItem = UITabBarItem(title: "Payments", image: UIImage(systemName: "house"), selectedImage: nil)
-
+        
         let customers = UINavigationController(rootViewController: CustomersViewController())
         customers.tabBarItem = UITabBarItem(title: "Customers", image: UIImage(systemName: "house"), selectedImage: nil)
-
+        
         viewControllers = [checkout, receivables, payments, customers]
-        
-        
     }
-
-
 }
