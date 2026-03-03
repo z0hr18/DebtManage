@@ -26,9 +26,9 @@ class CustomersViewController: UIViewController {
         setupTableView()
         
         let addButton = UIBarButtonItem(
-            barButtonSystemItem: .add, // Use a system-provided "add" icon (recommended by Apple)
-            target: self,              // The target object (your view controller)
-            action: #selector(addTapped) // The action method to call
+            barButtonSystemItem: .add,
+            target: self,
+            action: #selector(addTapped)
         )
         navigationItem.rightBarButtonItem = addButton
         

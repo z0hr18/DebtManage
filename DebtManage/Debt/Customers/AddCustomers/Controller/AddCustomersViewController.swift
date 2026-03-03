@@ -138,3 +138,14 @@ class AddCustomersViewController: UIViewController {
         viewModel.saveData()
     }
 }
+
+
+extension AddCustomersViewController: AddCustomersViewModelDelegate {
+    func didError(error: ErrorList) {
+        print(error.description)
+    }
+    
+   
+}
+    
+

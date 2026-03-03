@@ -9,7 +9,6 @@ import Foundation
 
 protocol AddCustomersViewModelDelegate: AnyObject {
     func didError(error: ErrorList)
-    func refreshUIData()
 }
 
 final class AddCustomersViewModel {
@@ -32,7 +31,6 @@ final class AddCustomersViewModel {
             switch result {
             case .success(let data):
                 self.customerModel = data
-                self.delegate?.refreshUIData()
             case .failure(let failure):
                 self.delegate?.didError(error: failure)
             }
@@ -50,7 +48,5 @@ final class AddCustomersViewModel {
             }
             
         }
- 
     }
-    
 }
