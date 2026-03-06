@@ -7,20 +7,15 @@
 
 import Foundation
 
-class CustomersRepository {
-    static let shared = CustomersRepository()
-    private let codable = CodableManager()
+protocol CustomersRepository: BaseRepository {
+    func saveCustomer(model: [Customers], completion: @escaping(Result<Data, ErrorList>) -> Void)
+    func readCustomer(completion: @escaping(Result<[Customers], ErrorList>) -> Void)
+}
+
+class CustomersRepositoryImpl: CustomersRepository {
     
-    func saveCustomer(model: [Customers], completion: @escaping(ErrorList?) -> Void) {
-        codable.encodeProccess(model: model) { result in
-            switch result {
-            case .success(let data):
-                UserDefaults.standard.customerData = data
-                completion(nil)
-            case .failure(let error):
-                completion(error)
-            }
-        }
+    func saveCustomer(model: [Customers], completion: @escaping(Result<Data, ErrorList>) -> Void) {
+        codable.encodeProccess(model: model, completion: completion)
     }
     
     func readCustomer(completion: @escaping(Result<[Customers], ErrorList>) -> Void) {

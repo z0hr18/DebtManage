@@ -19,8 +19,8 @@
 		8C44B1F02F4C7F68004E3CA4 /* PaymentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C44B1EF2F4C7F54004E3CA4 /* PaymentsViewModel.swift */; };
 		8C44B3792F51CF8B004E3CA4 /* ErrorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C44B3782F51CF7B004E3CA4 /* ErrorList.swift */; };
 		8C44B37B2F51D000004E3CA4 /* CodableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C44B37A2F51CFE5004E3CA4 /* CodableManager.swift */; };
-		8C44B37D2F51D165004E3CA4 /* Untitled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C44B37C2F51D0DC004E3CA4 /* Untitled.swift */; };
 		8C44B3812F51D1BD004E3CA4 /* CustomersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C44B3802F51D1A9004E3CA4 /* CustomersRepository.swift */; };
+		8CA5BF982F5B4D6E0075180A /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5BF972F5B4D6E0075180A /* Session.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,9 +37,9 @@
 		8C44B1EF2F4C7F54004E3CA4 /* PaymentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewModel.swift; sourceTree = "<group>"; };
 		8C44B3782F51CF7B004E3CA4 /* ErrorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorList.swift; sourceTree = "<group>"; };
 		8C44B37A2F51CFE5004E3CA4 /* CodableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableManager.swift; sourceTree = "<group>"; };
-		8C44B37C2F51D0DC004E3CA4 /* Untitled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Untitled.swift; sourceTree = "<group>"; };
 		8C44B3802F51D1A9004E3CA4 /* CustomersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomersRepository.swift; sourceTree = "<group>"; };
 		8C878DDF2F30A7F000028C20 /* DebtManage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebtManage.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CA5BF972F5B4D6E0075180A /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -63,9 +63,9 @@
 			path = CustomersList;
 			sourceTree = "<group>";
 		};
-		8C44B3842F51E129004E3CA4 /* old */ = {
+		8CA5BF922F5B40990075180A /* Common */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = old;
+			path = Common;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -115,9 +115,9 @@
 		8C1B4E632F34F34C00FDBE1F /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				8C44B3842F51E129004E3CA4 /* old */,
 				8C44B37A2F51CFE5004E3CA4 /* CodableManager.swift */,
 				8C44B3782F51CF7B004E3CA4 /* ErrorList.swift */,
+				8CA5BF972F5B4D6E0075180A /* Session.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -125,7 +125,7 @@
 		8C1B4E652F34F34C00FDBE1F /* DebtManage */ = {
 			isa = PBXGroup;
 			children = (
-				8C44B37C2F51D0DC004E3CA4 /* Untitled.swift */,
+				8CA5BF922F5B40990075180A /* Common */,
 				8C44B2E82F508E60004E3CA4 /* Extension */,
 				8C1B4E5A2F34F34C00FDBE1F /* Application */,
 				8C1B4E622F34F34C00FDBE1F /* Resource */,
@@ -320,7 +320,7 @@
 				8C44B2E82F508E60004E3CA4 /* Extension */,
 				8C44B3242F51C122004E3CA4 /* AddCustomers */,
 				8C44B32B2F51C286004E3CA4 /* CustomersList */,
-				8C44B3842F51E129004E3CA4 /* old */,
+				8CA5BF922F5B40990075180A /* Common */,
 			);
 			name = DebtManage;
 			packageProductDependencies = (
@@ -353,6 +353,8 @@
 			);
 			mainGroup = 8C878DD62F30A7F000028C20;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8C878DE02F30A7F000028C20 /* Products */;
 			projectDirPath = "";
@@ -385,10 +387,10 @@
 				8C44B1EC2F4C7C0A004E3CA4 /* CheckoutViewModel.swift in Sources */,
 				8C44B37B2F51D000004E3CA4 /* CodableManager.swift in Sources */,
 				8C44B3792F51CF8B004E3CA4 /* ErrorList.swift in Sources */,
-				8C44B37D2F51D165004E3CA4 /* Untitled.swift in Sources */,
 				8C1B4E692F34F34C00FDBE1F /* AppDelegate.swift in Sources */,
 				8C44B3812F51D1BD004E3CA4 /* CustomersRepository.swift in Sources */,
 				8C1B4E6A2F34F34C00FDBE1F /* SceneDelegate.swift in Sources */,
+				8CA5BF982F5B4D6E0075180A /* Session.swift in Sources */,
 				8C1B4EC72F3A366E00FDBE1F /* CheckoutViewController.swift in Sources */,
 				8C44B1F02F4C7F68004E3CA4 /* PaymentsViewModel.swift in Sources */,
 				8C44B1EE2F4C7F30004E3CA4 /* ReceivablesViewModel.swift in Sources */,

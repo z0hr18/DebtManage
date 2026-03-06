@@ -73,7 +73,7 @@ class AddCustomersViewController: UIViewController {
     }()
     
     var viewModel: AddCustomersViewModel = {
-        let vm = AddCustomersViewModel()
+        let vm = AddCustomersViewModel(repo: CustomersRepositoryImpl())
         return vm
     }()
     
@@ -135,7 +135,7 @@ class AddCustomersViewController: UIViewController {
         guard let number = numberTexfield.text, !name.isEmpty else { return }
         
         viewModel.saveNewCustomer(name: name, surname: surname, phone: number)
-        viewModel.saveData()
+
     }
 }
 

@@ -17,13 +17,24 @@ class CustomersViewController: UIViewController {
         return view
     }()
     
+    private var viewModel: CustomersViewModel {
+        let viewModel = CustomersViewModel(customerRepository: CustomersRepositoryImpl())
+        viewModel.delegate = self
+        return viewModel
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupTableView()
+        setupUIConfiguration()
+    }
+    
+    private func setupUIConfiguration() {
         view.backgroundColor = .white
         title = "Müştərilər"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
-        setupTableView()
+        viewModel.readData()
         
         let addButton = UIBarButtonItem(
             barButtonSystemItem: .add,
@@ -31,14 +42,6 @@ class CustomersViewController: UIViewController {
             action: #selector(addTapped)
         )
         navigationItem.rightBarButtonItem = addButton
-        
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        viewModel.readData()
-        tableView.reloadData()
-      
     }
     
     private func setupTableView() {
@@ -52,12 +55,6 @@ class CustomersViewController: UIViewController {
         ])
     }
     
-    private var viewModel: CustomersViewModel {
-        let viewModel = CustomersViewModel()
-        return viewModel
-    }
-    
-    
     @objc
     func addTapped() {
         let vc = AddCustomersViewController()
@@ -65,6 +62,18 @@ class CustomersViewController: UIViewController {
     }
 }
 
+// MARK: - For Delegation process
+extension CustomersViewController: CustomersViewModelDelegate {
+    func reloadData() {
+        tableView.reloadData()
+    }
+    
+    func didReceiveError(error: ErrorList) {
+        print(error.description)
+    }
+}
+
+// MARK: - For TableView Delegation process
 extension CustomersViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         viewModel.customerModel.count

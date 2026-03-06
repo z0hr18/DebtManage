@@ -7,20 +7,53 @@
 
 import Foundation
 
+protocol CustomersViewModelDelegate: AnyObject {
+    func reloadData()
+    func didReceiveError(error: ErrorList)
+}
+
 final class CustomersViewModel {
-    private let repo: CustomersRepository = .shared
+    weak var delegate: CustomersViewModelDelegate?
     
-    private(set) var customerModel: [Customers] = []
+    private let session: Session = .shared
+    
+    private let customerRepository: CustomersRepository
+    
+    init(customerRepository: CustomersRepository) {
+        self.customerRepository = customerRepository
+    }
     
     func readData() {
-        repo.readCustomer { result in
+        customerRepository.readCustomer { [weak self] result in
+            guard let self else { return }
+            
             switch result {
-            case .success(let data):
-                self.customerModel = data
-                print("Data: \(self.customerModel)")
+            case .success(let responseModel):
+                session.addCustomers(items: responseModel)
+                saveUserDefaults(customerModel: responseModel)
             case .failure(let failure):
-                print("❌ readData error:", failure)
+                delegate?.didReceiveError(error: failure)
             }
         }
+    }
+    
+    private func saveUserDefaults(customerModel: [Customers]) {
+        customerRepository.saveCustomer(model: customerModel) { [weak self] result in
+            guard let self else {return}
+            
+            switch result {
+            case .success(let data):
+                UserDefaults.standard.customerData = data
+                delegate?.reloadData()
+            case .failure(let failure):
+                delegate?.didReceiveError(error: failure)
+            }
+        }
+    }
+}
+
+extension CustomersViewModel { //Bu kod Session-dakı datanı ViewModel vasitəsilə oxumaq üçündür
+    var customerModel: [Customers] {
+        return session.customerModel
     }
 }

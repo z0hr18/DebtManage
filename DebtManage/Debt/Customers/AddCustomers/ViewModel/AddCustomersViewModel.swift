@@ -16,15 +16,20 @@ final class AddCustomersViewModel {
     private(set) var customerModel: [Customers] = []
     
     weak var delegate: AddCustomersViewModelDelegate?
-    private var repo: CustomersRepository = .shared
+    private let repo: CustomersRepository
     
-    func saveData() {
-        repo.saveCustomer(model: customerModel) { error in
-            if let error {
-                self.delegate?.didError(error: error)
-            }
-        }
+    init(repo: CustomersRepository) {
+        self.repo = repo
     }
+    
+    
+    //    func saveData() {
+    //        repo.saveCustomer(model: customerModel) { error in
+    //            if let error {
+    //                self.delegate?.didError(error: error)
+    //            }
+    //        }
+    //    }
     
     func readData() {
         repo.readCustomer { result in
@@ -41,8 +46,9 @@ final class AddCustomersViewModel {
         let newCustomer = Customers(name: name, surname: surname, phone: phone)
         repo.readCustomer { result in
             switch result {
-            case .success(var customers):
-                customers.append(newCustomer)
+            case .success(let customers):
+                self.customerModel = customers
+                self.customerModel.append(newCustomer)
             case .failure:
                 break
             }
