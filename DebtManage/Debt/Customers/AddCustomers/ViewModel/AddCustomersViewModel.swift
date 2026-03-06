@@ -9,19 +9,12 @@ import Foundation
 
 protocol AddCustomersViewModelDelegate: AnyObject {
     func didError(error: ErrorList)
+    func didSaveCustomer()
 }
 
 final class AddCustomersViewModel {
-    
-    private(set) var customerModel: [Customers] = []
-    
     weak var delegate: AddCustomersViewModelDelegate?
-    private let repo: CustomersRepository
-    
-    init(repo: CustomersRepository) {
-        self.repo = repo
-    }
-    
+    private let session: Session = .shared
     
     //    func saveData() {
     //        repo.saveCustomer(model: customerModel) { error in
@@ -31,28 +24,29 @@ final class AddCustomersViewModel {
     //        }
     //    }
     
-    func readData() {
-        repo.readCustomer { result in
-            switch result {
-            case .success(let data):
-                self.customerModel = data
-            case .failure(let failure):
-                self.delegate?.didError(error: failure)
-            }
-        }
-    }
+//    func readData() {
+//        repo.readCustomer { result in
+//            switch result {
+//            case .success(let data):
+//                self.customerModel = data
+//            case .failure(let failure):
+//                self.delegate?.didError(error: failure)
+//            }
+//        }
+//    }
     
     func saveNewCustomer(name: String, surname: String, phone: String) {
         let newCustomer = Customers(name: name, surname: surname, phone: phone)
-        repo.readCustomer { result in
-            switch result {
-            case .success(let customers):
-                self.customerModel = customers
-                self.customerModel.append(newCustomer)
-            case .failure:
-                break
-            }
-            
-        }
+//        repo.readCustomer { result in
+//            switch result {
+//            case .success(let customers):
+//                self.customerModel = customers
+//                self.customerModel.append(newCustomer)
+//            case .failure:
+//                break
+//            }
+//        }
+        session.addCustomer(item: newCustomer)
+        delegate?.didSaveCustomer()
     }
 }

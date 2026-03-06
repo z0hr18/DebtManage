@@ -29,6 +29,10 @@ class CustomersViewController: UIViewController {
         setupUIConfiguration()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
+    
     private func setupUIConfiguration() {
         view.backgroundColor = .white
         title = "Müştərilər"
@@ -65,7 +69,7 @@ class CustomersViewController: UIViewController {
 // MARK: - For Delegation process
 extension CustomersViewController: CustomersViewModelDelegate {
     func reloadData() {
-        tableView.reloadData()
+//        tableView.reloadData()
     }
     
     func didReceiveError(error: ErrorList) {
@@ -90,6 +94,6 @@ extension CustomersViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return 60
     }
 }

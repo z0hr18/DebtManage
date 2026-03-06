@@ -44,14 +44,6 @@ class AddCustomersViewController: UIViewController {
         return txtField
     }()
     
-    private let priceTexfield: UITextField = {
-        let txtField = UITextField()
-        txtField.placeholder = "Price"
-        txtField.borderStyle = .roundedRect
-        txtField.keyboardType = .decimalPad
-        return txtField
-    }()
-    
     private let numberTexfield: UITextField = {
         let txtField = UITextField()
         txtField.placeholder = "Mobil nömrənizi daxil edin"
@@ -73,7 +65,7 @@ class AddCustomersViewController: UIViewController {
     }()
     
     var viewModel: AddCustomersViewModel = {
-        let vm = AddCustomersViewModel(repo: CustomersRepositoryImpl())
+        let vm = AddCustomersViewModel()
         return vm
     }()
     
@@ -84,6 +76,7 @@ class AddCustomersViewController: UIViewController {
         title = "Yeni müştəri yarat"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
+        viewModel.delegate = self
         setupConstraints()
     }
     
@@ -131,8 +124,8 @@ class AddCustomersViewController: UIViewController {
     @objc
     func buttonTapped() {
         guard let name = nameTexfield.text, !name.isEmpty else { return }
-        guard let surname = surnameTexfield.text, !name.isEmpty else { return }
-        guard let number = numberTexfield.text, !name.isEmpty else { return }
+        guard let surname = surnameTexfield.text, !surname.isEmpty else { return }
+        guard let number = numberTexfield.text, !number.isEmpty else { return }
         
         viewModel.saveNewCustomer(name: name, surname: surname, phone: number)
 
@@ -141,11 +134,17 @@ class AddCustomersViewController: UIViewController {
 
 
 extension AddCustomersViewController: AddCustomersViewModelDelegate {
+    func didSaveCustomer() {
+        nameTexfield.text = ""
+        surnameTexfield.text = ""
+        numberTexfield.text = ""
+        
+        print("Customer saved")
+    }
+
     func didError(error: ErrorList) {
         print(error.description)
     }
-    
-   
 }
     
 

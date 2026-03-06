@@ -14,9 +14,15 @@ final class Session {
     
     private(set) var customerModel: [Customers] = []
     
-    func readDataCustomer() {
+    func readDataCustomer() { //UserDefaults → Session.customerModel
         //ilk root veziyyetinde men userdefaultsdan melumatlari cekib bura yazmaliyam customer ucun
         // User defaults read customers model
+      
+        if let data = UserDefaults.standard.customerData {
+            if let customers = try? JSONDecoder().decode([Customers].self, from: data) {
+                customerModel = customers
+            }
+        }
     }
  }
 
@@ -31,9 +37,12 @@ extension Session {
     
     func addCustomers(items: [Customers]) {
         customerModel = items
+        saveData()
     }
     
-    func saveData() {
-        
+    func saveData() { //customerModel -> UserDefaults
+        if let data = try? JSONEncoder().encode(customerModel) {
+            UserDefaults.standard.customerData = data
+        }
     }
 }

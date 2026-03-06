@@ -27,7 +27,7 @@ class CustomersCell: UITableViewCell {
     private lazy var vStack: UIStackView = {
         let stack = UIStackView(arrangedSubviews: [fullnameLabel, phoneLabel])
         stack.axis = .vertical
-        stack.spacing = 6
+        stack.spacing = 2
         stack.alignment = .fill
         return stack
     }()
@@ -57,5 +57,4 @@ class CustomersCell: UITableViewCell {
         fullnameLabel.text = "\(customers.name) \(customers.surname)"
         phoneLabel.text = customers.phone
     }
-    
 }
