@@ -7,12 +7,13 @@
 
 import Foundation
 
-final class Session {
+final class Session { //belke generic edim methodlari
     
     static let shared = Session()
     private init() {}
     
     private(set) var customerModel: [Customers] = []
+    private(set) var debtsModel: [NewDebts] = []
     
     func readDataCustomer() { //UserDefaults → Session.customerModel
         //ilk root veziyyetinde men userdefaultsdan melumatlari cekib bura yazmaliyam customer ucun

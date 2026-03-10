@@ -12,15 +12,14 @@
 		8C1B4E692F34F34C00FDBE1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B4E562F34F34C00FDBE1F /* AppDelegate.swift */; };
 		8C1B4E6A2F34F34C00FDBE1F /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B4E592F34F34C00FDBE1F /* SceneDelegate.swift */; };
 		8C1B4EC72F3A366E00FDBE1F /* CheckoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B4EC62F3A366E00FDBE1F /* CheckoutViewController.swift */; };
-		8C1B4EE32F3A3A5C00FDBE1F /* ReceivablesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B4EE22F3A3A5B00FDBE1F /* ReceivablesViewController.swift */; };
 		8C1B4EE52F3A3A7100FDBE1F /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C1B4EE42F3A3A7100FDBE1F /* PaymentsViewController.swift */; };
 		8C44B1EC2F4C7C0A004E3CA4 /* CheckoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C44B1EB2F4C7BF3004E3CA4 /* CheckoutViewModel.swift */; };
-		8C44B1EE2F4C7F30004E3CA4 /* ReceivablesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C44B1ED2F4C7F22004E3CA4 /* ReceivablesViewModel.swift */; };
 		8C44B1F02F4C7F68004E3CA4 /* PaymentsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C44B1EF2F4C7F54004E3CA4 /* PaymentsViewModel.swift */; };
 		8C44B3792F51CF8B004E3CA4 /* ErrorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C44B3782F51CF7B004E3CA4 /* ErrorList.swift */; };
 		8C44B37B2F51D000004E3CA4 /* CodableManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C44B37A2F51CFE5004E3CA4 /* CodableManager.swift */; };
 		8C44B3812F51D1BD004E3CA4 /* CustomersRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8C44B3802F51D1A9004E3CA4 /* CustomersRepository.swift */; };
 		8CA5BF982F5B4D6E0075180A /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5BF972F5B4D6E0075180A /* Session.swift */; };
+		8CA5BFD92F604BB20075180A /* ReceivablesRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5BFD82F604B560075180A /* ReceivablesRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,16 +29,15 @@
 		8C1B4E602F34F34C00FDBE1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8C1B4E612F34F34C00FDBE1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8C1B4EC62F3A366E00FDBE1F /* CheckoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewController.swift; sourceTree = "<group>"; };
-		8C1B4EE22F3A3A5B00FDBE1F /* ReceivablesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivablesViewController.swift; sourceTree = "<group>"; };
 		8C1B4EE42F3A3A7100FDBE1F /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
 		8C44B1EB2F4C7BF3004E3CA4 /* CheckoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutViewModel.swift; sourceTree = "<group>"; };
-		8C44B1ED2F4C7F22004E3CA4 /* ReceivablesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivablesViewModel.swift; sourceTree = "<group>"; };
 		8C44B1EF2F4C7F54004E3CA4 /* PaymentsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewModel.swift; sourceTree = "<group>"; };
 		8C44B3782F51CF7B004E3CA4 /* ErrorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorList.swift; sourceTree = "<group>"; };
 		8C44B37A2F51CFE5004E3CA4 /* CodableManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableManager.swift; sourceTree = "<group>"; };
 		8C44B3802F51D1A9004E3CA4 /* CustomersRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomersRepository.swift; sourceTree = "<group>"; };
 		8C878DDF2F30A7F000028C20 /* DebtManage.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DebtManage.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CA5BF972F5B4D6E0075180A /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		8CA5BFD82F604B560075180A /* ReceivablesRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivablesRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -66,6 +64,16 @@
 		8CA5BF922F5B40990075180A /* Common */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Common;
+			sourceTree = "<group>";
+		};
+		8CA5BF9B2F6045610075180A /* NewDebts */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = NewDebts;
+			sourceTree = "<group>";
+		};
+		8CA5BF9C2F60457F0075180A /* ReceviablesList */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ReceviablesList;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -177,43 +185,11 @@
 			path = Checkout;
 			sourceTree = "<group>";
 		};
-		8C1B4E952F34F45100FDBE1F /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				8C1B4EE22F3A3A5B00FDBE1F /* ReceivablesViewController.swift */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
-		8C1B4E962F34F45100FDBE1F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		8C1B4E972F34F45100FDBE1F /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
-		8C1B4E982F34F45100FDBE1F /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				8C44B1ED2F4C7F22004E3CA4 /* ReceivablesViewModel.swift */,
-			);
-			path = ViewModel;
-			sourceTree = "<group>";
-		};
 		8C1B4E992F34F45100FDBE1F /* Receivables */ = {
 			isa = PBXGroup;
 			children = (
-				8C1B4E952F34F45100FDBE1F /* Controller */,
-				8C1B4E962F34F45100FDBE1F /* Model */,
-				8C1B4E972F34F45100FDBE1F /* View */,
-				8C1B4E982F34F45100FDBE1F /* ViewModel */,
+				8CA5BF9C2F60457F0075180A /* ReceviablesList */,
+				8CA5BF9B2F6045610075180A /* NewDebts */,
 			);
 			path = Receivables;
 			sourceTree = "<group>";
@@ -279,6 +255,7 @@
 		8C44B37F2F51D193004E3CA4 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
+				8CA5BFD82F604B560075180A /* ReceivablesRepository.swift */,
 				8C44B3802F51D1A9004E3CA4 /* CustomersRepository.swift */,
 			);
 			path = Repositories;
@@ -321,6 +298,8 @@
 				8C44B3242F51C122004E3CA4 /* AddCustomers */,
 				8C44B32B2F51C286004E3CA4 /* CustomersList */,
 				8CA5BF922F5B40990075180A /* Common */,
+				8CA5BF9B2F6045610075180A /* NewDebts */,
+				8CA5BF9C2F60457F0075180A /* ReceviablesList */,
 			);
 			name = DebtManage;
 			packageProductDependencies = (
@@ -383,8 +362,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8C1B4EE52F3A3A7100FDBE1F /* PaymentsViewController.swift in Sources */,
-				8C1B4EE32F3A3A5C00FDBE1F /* ReceivablesViewController.swift in Sources */,
 				8C44B1EC2F4C7C0A004E3CA4 /* CheckoutViewModel.swift in Sources */,
+				8CA5BFD92F604BB20075180A /* ReceivablesRepository.swift in Sources */,
 				8C44B37B2F51D000004E3CA4 /* CodableManager.swift in Sources */,
 				8C44B3792F51CF8B004E3CA4 /* ErrorList.swift in Sources */,
 				8C1B4E692F34F34C00FDBE1F /* AppDelegate.swift in Sources */,
@@ -393,7 +372,6 @@
 				8CA5BF982F5B4D6E0075180A /* Session.swift in Sources */,
 				8C1B4EC72F3A366E00FDBE1F /* CheckoutViewController.swift in Sources */,
 				8C44B1F02F4C7F68004E3CA4 /* PaymentsViewModel.swift in Sources */,
-				8C44B1EE2F4C7F30004E3CA4 /* ReceivablesViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

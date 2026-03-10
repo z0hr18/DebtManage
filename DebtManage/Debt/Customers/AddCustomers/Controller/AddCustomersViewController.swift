@@ -80,8 +80,6 @@ class AddCustomersViewController: UIViewController {
         setupConstraints()
     }
     
-    
-    
     private func setupConstraints() {
         view.addSubViews(views: nameLabel, nameTexfield, surnameLabel, surnameTexfield, phoneLabel, numberTexfield, saveButton)
         
@@ -131,7 +129,6 @@ class AddCustomersViewController: UIViewController {
 
     }
 }
-
 
 extension AddCustomersViewController: AddCustomersViewModelDelegate {
     func didSaveCustomer() {

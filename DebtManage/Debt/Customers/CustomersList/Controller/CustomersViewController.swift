@@ -7,7 +7,13 @@
 
 import UIKit
 
+protocol CustomerSelectionDelegate: AnyObject {
+    func didSelectCustomer(customer: Customers)
+}
+
 class CustomersViewController: UIViewController {
+    
+    weak var delegate: CustomerSelectionDelegate?
     
     private lazy var tableView: UITableView = {
         let view = UITableView()
@@ -95,5 +101,11 @@ extension CustomersViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedCustomer = viewModel.customerModel[indexPath.row]
+        delegate?.didSelectCustomer(customer: selectedCustomer)
+        dismiss(animated: true)
     }
 }
