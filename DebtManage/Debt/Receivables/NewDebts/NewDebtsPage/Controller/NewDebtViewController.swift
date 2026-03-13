@@ -7,8 +7,7 @@
 
 import UIKit
 
-class NewDebtViewController: UIViewController {
-    
+final class NewDebtViewController: UIViewController {
     //MARK: - Customer Selection
     
     private let customerSelectionView: UIView = {
@@ -70,15 +69,25 @@ class NewDebtViewController: UIViewController {
     private let amountTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "0.00"
+        textField.borderStyle = .roundedRect
         textField.font = .systemFont(ofSize: 26, weight: .medium)
         textField.textColor = .black
         textField.keyboardType = .decimalPad
-        textField.backgroundColor = .white
-        textField.layer.cornerRadius = 12
-        textField.layer.borderWidth = 1
-        textField.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.35).cgColor
-        textField.textAlignment = .justified
         return textField
+    }()
+    
+    private lazy var pickerView: UIPickerView = {
+        let picker = UIPickerView()
+        picker.delegate = self
+        picker.dataSource = self
+        picker.translatesAutoresizingMaskIntoConstraints = false
+        return picker
+    }()
+    
+    private let currencyTextField: UITextField = {
+        let tf = UITextField()
+        tf.isHidden = true
+        return tf
     }()
     
     private let currencyButton: UIButton = {
@@ -90,6 +99,7 @@ class NewDebtViewController: UIViewController {
         button.layer.cornerRadius = 12
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.lightGray.withAlphaComponent(0.35).cgColor
+        button.addTarget(self, action: #selector(currencyButtonTapped), for: .touchDown)
         return button
     }()
     
@@ -125,15 +135,22 @@ class NewDebtViewController: UIViewController {
         button.backgroundColor = .systemRed
         button.layer.cornerRadius = 12
         button.clipsToBounds = true
+        button.addTarget(self, action: #selector(createNewDebtButtonTapped), for: .touchUpInside)
         return button
     }()
-  
+    
+    var viewModel: NewDebtViewModel = {
+        let vm = NewDebtViewModel()
+        return vm
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
         title = "Yeni borc yarat"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationItem.largeTitleDisplayMode = .always
+        viewModel.delegate = self
         setupUI()
         setupConstraints()
         setupSelectionAction()
@@ -145,9 +162,26 @@ class NewDebtViewController: UIViewController {
     }
     
     @objc
+    func currencyButtonTapped() {
+        currencyTextField.becomeFirstResponder()
+    }
+    
+    @objc
+    func createNewDebtButtonTapped() {
+        guard let fullName = customerTitleLabel.text,
+              let priceText = amountTextField.text,
+              let price = Double(priceText),
+              let currency = currencyButton.titleLabel?.text,
+              let note = noteTextView.text
+        else { return }
+        
+        viewModel.saveNewDebt(fullName: fullName, price: price, currency: currency, description: note)
+    }
+    
+    @objc
     func customerSelectionTapped() {
         print("tapped selection")
-        let bottomSheetVC = CustomersViewController()
+        let bottomSheetVC = CustomerBottomSheetController()
         bottomSheetVC.delegate = self
         
         if let sheet = bottomSheetVC.sheetPresentationController {
@@ -161,7 +195,10 @@ class NewDebtViewController: UIViewController {
     }
     
     func setupUI() {
-        view.addSubViews(views: customerSelectionView, amountLabel, amountTextField, currencyButton, noteLabel, noteTextView, createDebtButton)
+        currencyTextField.inputView = pickerView
+        
+        
+        view.addSubViews(views: customerSelectionView, amountLabel, amountTextField, currencyButton, noteLabel, noteTextView, currencyTextField, createDebtButton)
         
         customerSelectionView.addSubview(customerIconContainer)
         customerIconContainer.addSubview(customerIconImageView)
@@ -191,7 +228,7 @@ class NewDebtViewController: UIViewController {
             customerTitleLabel.leadingAnchor.constraint(equalTo: customerIconContainer.trailingAnchor, constant: 16),
             customerTitleLabel.trailingAnchor.constraint(equalTo: customerSelectionView.trailingAnchor, constant: -16),
             
-            customerSubtitleLabel.topAnchor.constraint(equalTo: customerTitleLabel.bottomAnchor, constant: 6),
+            customerSubtitleLabel.topAnchor.constraint(equalTo: customerTitleLabel.bottomAnchor, constant: 4),
             customerSubtitleLabel.leadingAnchor.constraint(equalTo: customerTitleLabel.leadingAnchor),
             customerSubtitleLabel.trailingAnchor.constraint(equalTo: customerSelectionView.trailingAnchor, constant: -16),
             
@@ -224,12 +261,15 @@ class NewDebtViewController: UIViewController {
             
             
             // MARK: - Button
+            currencyTextField.topAnchor.constraint(equalTo: currencyButton.topAnchor),
+            currencyTextField.leadingAnchor.constraint(equalTo: currencyButton.leadingAnchor),
+            currencyTextField.trailingAnchor.constraint(equalTo: currencyButton.trailingAnchor),
+            currencyTextField.bottomAnchor.constraint(equalTo: currencyButton.bottomAnchor),
+            
             createDebtButton.topAnchor.constraint(equalTo: noteTextView.bottomAnchor, constant: 28),
             createDebtButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 12),
             createDebtButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -12),
             createDebtButton.heightAnchor.constraint(equalToConstant: 56)
-            
-            
         ])
     }
 }
@@ -238,5 +278,36 @@ extension NewDebtViewController: CustomerSelectionDelegate {
     func didSelectCustomer(customer: Customers) {
         customerTitleLabel.text = "\(customer.name) \(customer.surname)"
         customerSubtitleLabel.text = customer.phone
+    }
+}
+
+extension NewDebtViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        viewModel.currencies.count
+    }
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return viewModel.currencies[row]
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        let selectedCurrency = viewModel.currencies[row]
+        currencyButton.setTitle(selectedCurrency, for: .normal)
+        currencyTextField.resignFirstResponder()
+    }
+}
+
+extension NewDebtViewController: NewDebtViewModelDelegate {
+    func didSaveDebts() {
+        navigationController?.popViewController(animated: true)
+        print("debts saved")
+    }
+
+    func didError(error: ErrorList) {
+        print(error.description)
     }
 }

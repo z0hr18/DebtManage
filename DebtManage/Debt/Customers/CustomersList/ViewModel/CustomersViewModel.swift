@@ -36,20 +36,6 @@ final class CustomersViewModel {
             }
         }
     }
-    
-//    private func saveUserDefaults(customerModel: [Customers]) {
-//        customerRepository.saveCustomer(model: customerModel) { [weak self] result in
-//            guard let self else {return}
-//            
-//            switch result {
-//            case .success(let data):
-//                UserDefaults.standard.customerData = data
-//                delegate?.reloadData()
-//            case .failure(let failure):
-//                delegate?.didReceiveError(error: failure)
-//            }
-//        }
-//    }
 }
 
 extension CustomersViewModel { //Bu kod Session-dakı datanı ViewModel vasitəsilə oxumaq üçündür

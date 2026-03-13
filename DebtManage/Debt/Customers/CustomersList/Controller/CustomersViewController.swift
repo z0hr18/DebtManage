@@ -7,19 +7,14 @@
 
 import UIKit
 
-protocol CustomerSelectionDelegate: AnyObject {
-    func didSelectCustomer(customer: Customers)
-}
 
 class CustomersViewController: UIViewController {
-    
-    weak var delegate: CustomerSelectionDelegate?
     
     private lazy var tableView: UITableView = {
         let view = UITableView()
         view.delegate = self
         view.dataSource = self
-        view.register(CustomersCell.self, forCellReuseIdentifier: CustomersCell.description())
+        view.register(CustomersCell.self)
         return view
     }()
     
@@ -55,14 +50,7 @@ class CustomersViewController: UIViewController {
     }
     
     private func setupTableView() {
-        view.addSubViews(views: tableView)
-        
-        NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: view.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        view.anchorFill(view: tableView)
     }
     
     @objc
@@ -91,21 +79,12 @@ extension CustomersViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let customer = viewModel.customerModel[indexPath.row]
-        if let cell = tableView.dequeueReusableCell(withIdentifier: CustomersCell.description(), for: indexPath) as? CustomersCell {
+        return tableView.reuseable(cell: CustomersCell.self, indexPath: indexPath) { cell in
             cell.cellConfig(customers: customer)
-            return cell
         }
-        
-        return UITableViewCell()
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedCustomer = viewModel.customerModel[indexPath.row]
-        delegate?.didSelectCustomer(customer: selectedCustomer)
-        dismiss(animated: true)
     }
 }

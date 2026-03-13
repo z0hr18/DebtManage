@@ -8,8 +8,9 @@
 import Foundation
 
 struct NewDebts: Codable {
-    let customer: Customers
+    let customer: String
     let amount: Double
     let currency: String
+    let date: Date?
     let note: String
 }
