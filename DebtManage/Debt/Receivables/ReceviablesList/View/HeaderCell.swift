@@ -7,9 +7,12 @@
 
 import UIKit
 
+protocol HeaderCellDelegate: AnyObject {
+    func didSelectHeaderIndex(section: Int)
+}
 
 class HeaderCell: UITableViewHeaderFooterView {
-    
+    weak var delegate: HeaderCellDelegate?
     private let fullNameLabel: UILabel = {
         let label = UILabel()
         label.font = .boldSystemFont(ofSize: 18)
@@ -18,13 +21,14 @@ class HeaderCell: UITableViewHeaderFooterView {
         return label
     }()
     
-    private let payButton: UIButton = {
+    private lazy var payButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Borc ödə", for: .normal)
         button.backgroundColor = .white
         button.titleLabel?.textColor = .black
         button.layer.cornerRadius = 6
         button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(didTapAddMenu), for: .touchUpInside)
         return button
     }()
     
@@ -55,5 +59,9 @@ class HeaderCell: UITableViewHeaderFooterView {
     
     func cellConfig(fullName: String) {
         fullNameLabel.text = fullName
+    }
+    
+    @objc private func didTapAddMenu() {
+        delegate?.didSelectHeaderIndex(section: self.tag)
     }
 }

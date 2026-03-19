@@ -7,6 +7,11 @@
 
 import Foundation
 
+struct SectionDebt: Codable {
+    let sectionName: String
+    var data: [NewDebts]
+}
+
 struct NewDebts: Codable {
     let customer: String
     let amount: Double

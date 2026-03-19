@@ -62,7 +62,7 @@ class ReceivablesCell: UITableViewCell {
     }
     
     func cellConfig(debts: NewDebts) {
-        let formatter = DateFormatter()
+        let formatter = DateFormatter() //extention string
         formatter.dateFormat = "dd.MM.yyyy HH:mm"
 
         

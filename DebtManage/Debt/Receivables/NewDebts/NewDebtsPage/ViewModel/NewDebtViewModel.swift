@@ -17,12 +17,27 @@ final class NewDebtViewModel {
         "USD", "EUR", "TL", "AZN", "RUB"
     ]
     
+    private(set) var selectedCurrency: String = "USD"
+    
     weak var delegate: NewDebtViewModelDelegate?
     private let session: Session = .shared
     
+   
+    
     func saveNewDebt(fullName: String, price: Double, currency: String, description: String) {
         let newDebt = NewDebts(customer: fullName, amount: price, currency: currency, date: Date(), note: description)
-        session.addNewDebtCustomer(item: newDebt)
+        session.addNewSectionDebtCustomer(item: newDebt)
+//        session.addDebt(newDebt)
+        print("SECTION COUNT:", session.sectionModel.count)
+
         delegate?.didSaveDebts()
+    }
+    
+    func setModel(item: SectionModel?) {
+        self.sectionModel = item
+    }
+    
+    func updateCurrency(index: Int) {
+        selectedCurrency = currencies[index]
     }
 }

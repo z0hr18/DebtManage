@@ -20,16 +20,21 @@ class ReceivablesViewController: UIViewController {
         return view
     }()
     
-    private var viewModel: ReceivablesViewModel {
-        let viewModel = ReceivablesViewModel(receivableRepository: ReceivablesRepositoryImpl())
-        viewModel.delegate = self
-        return viewModel
-    }
+    private lazy var viewModel: ReceivablesViewModel = {
+        let vm = ReceivablesViewModel(receivableRepository: ReceivablesRepositoryImpl())
+        vm.delegate = self
+        return vm
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUIConfiguration()
         setupUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
     }
     
     private func setupUIConfiguration() {
@@ -67,15 +72,15 @@ class ReceivablesViewController: UIViewController {
 // MARK: - MAIN CELL
 extension ReceivablesViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        viewModel.sections.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.debtModel.count
+        viewModel.sections[section].data.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let debtsCustomer = viewModel.debtModel[indexPath.row]
+        let debtsCustomer = viewModel.sections[indexPath.section].data[indexPath.row]
         return tableView.reuseable(cell: ReceivablesCell.self, indexPath: indexPath) { cell in
             cell.cellConfig(debts: debtsCustomer)
         }
@@ -90,13 +95,11 @@ extension ReceivablesViewController {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
-        let debt = viewModel.debtModel[section]
+        let sectionName = viewModel.sections[section].sectionName
         
-        guard let header = tableView.dequeueReusableHeaderFooterView(
-            withIdentifier: HeaderCell.description()
-        ) as? HeaderCell else { return nil }
+        guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderCell.description()) as? HeaderCell else { return nil }
         
-        header.cellConfig(fullName: debt.customer)
+        header.cellConfig(fullName: sectionName)
         
         return header
     }
@@ -109,21 +112,21 @@ extension ReceivablesViewController {
 }
 
 // MARK: - FOOTER CELL
-extension ReceivablesViewController {
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: FooterCell.description()) as? FooterCell else { return nil }
-        
-        let debt = viewModel.debtModel[section].amount //amount ve currency
-        
-//        footer.configure
-        
-        return footer
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 50
-    }
-}
+//extension ReceivablesViewController {
+//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+//        guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: FooterCell.description()) as? FooterCell else { return nil }
+//
+//        let debts = viewModel.sections[section].data
+//
+//        footer.configure(items: debts)
+//
+//        return footer
+//    }
+//
+//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+//        return 50
+//    }
+//}
 
 extension ReceivablesViewController: ReceivablesViewModelDelegate {
     func reloadData() {
@@ -135,4 +138,16 @@ extension ReceivablesViewController: ReceivablesViewModelDelegate {
     }
 }
 
+//extension ReceivablesViewController: HeaderCellDelegate {
+//    func didSelectHeaderIndex(section: Int) {
+//        viewModel.customerDebt()
+//    }
+//    private func showDetail() {
+//        let vc = DeleteDebtBootomSheet()
+//        vc.viewModel.setModel(item: viewModel.sectionModel)
+//        show(vc, sender: self)
+//    }
+    
+    
+//}
 

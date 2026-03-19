@@ -90,7 +90,7 @@ final class NewDebtViewController: UIViewController {
         return tf
     }()
     
-    private let currencyButton: UIButton = {
+    private lazy var currencyButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Seç", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -127,7 +127,7 @@ final class NewDebtViewController: UIViewController {
     
     // MARK: - Button
     
-    private let createDebtButton: UIButton = {
+    private lazy var createDebtButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("Borc yarat", for: .normal)
         button.setTitleColor(.white, for: .normal)
@@ -139,8 +139,9 @@ final class NewDebtViewController: UIViewController {
         return button
     }()
     
-    var viewModel: NewDebtViewModel = {
+    lazy var viewModel: NewDebtViewModel = {
         let vm = NewDebtViewModel()
+        vm.delegate = self
         return vm
     }()
     
@@ -163,7 +164,11 @@ final class NewDebtViewController: UIViewController {
     
     @objc
     func currencyButtonTapped() {
+        guard let currency =  viewModel.currencies.first else {return}
+        viewModel.updateCurrency(index: 0)
         currencyTextField.becomeFirstResponder()
+        currencyButton.setTitle(currency, for: .normal)
+        
     }
     
     @objc
@@ -171,11 +176,15 @@ final class NewDebtViewController: UIViewController {
         guard let fullName = customerTitleLabel.text,
               let priceText = amountTextField.text,
               let price = Double(priceText),
-              let currency = currencyButton.titleLabel?.text,
               let note = noteTextView.text
         else { return }
         
-        viewModel.saveNewDebt(fullName: fullName, price: price, currency: currency, description: note)
+        viewModel.saveNewDebt( //ctrl m
+            fullName: fullName,
+            price: price,
+            currency: viewModel.selectedCurrency,
+            description: note
+        )
     }
     
     @objc
@@ -298,6 +307,7 @@ extension NewDebtViewController: UIPickerViewDelegate, UIPickerViewDataSource {
         let selectedCurrency = viewModel.currencies[row]
         currencyButton.setTitle(selectedCurrency, for: .normal)
         currencyTextField.resignFirstResponder()
+        viewModel.updateCurrency(index: row)
     }
 }
 

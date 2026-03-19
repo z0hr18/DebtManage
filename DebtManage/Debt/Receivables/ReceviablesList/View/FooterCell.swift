@@ -75,11 +75,18 @@ class FooterCell: UITableViewHeaderFooterView {
         
     }
     
-    func configure(azn: Double, usd: Double, tl: Double, eur: Double) {
-        aznLabel.text = "\(azn) AZN"
-        usdLabel.text = "\(usd) USD"
-        tlLabel.text = "\(tl) TL"
-        eurLabel.text = "\(eur) EUR"
+    func configure(items: [NewDebts]) {
+        //map giller ile filterlemek ve yoxlayib toplamaq currency-e gore
+     
+        
+//        
+//        aznLabel.text = "\(azn) AZN"
+//        usdLabel.text = "\(usd) USD"
+//        tlLabel.text = "\(tl) TL"
+//        eurLabel.text = "\(eur) EUR"
     }
+    
+    
+    //private sum calculate method -> string
 
 }

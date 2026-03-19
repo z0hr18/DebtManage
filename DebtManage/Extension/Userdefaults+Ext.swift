@@ -11,7 +11,7 @@ extension UserDefaults {
     
     enum Keys: String {
         case keyForDataCustomers = "@1234567890@"
-        case keyForDataDebts = "@987654321"
+        case keyForDataDebts = "@456789"
     }
     
     var customerData: Data? {
@@ -33,6 +33,8 @@ extension UserDefaults {
             setValue(newValue, forKey: Keys.keyForDataDebts.rawValue)
         }
     }
+    
+    
     
     
 }
