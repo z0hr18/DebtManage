@@ -14,6 +14,7 @@ final class Session {
     
     private(set) var customerModel: [Customers] = []
     private(set) var sectionModel: [SectionDebt] = []
+    private(set) var debtsModel: [NewDebts] = []
     
     func readAll() {
         readDataCustomer()

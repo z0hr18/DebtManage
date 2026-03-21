@@ -139,7 +139,7 @@ final class NewDebtViewController: UIViewController {
         return button
     }()
     
-    lazy var viewModel: NewDebtViewModel = {
+    private lazy var viewModel: NewDebtViewModel = {
         let vm = NewDebtViewModel()
         vm.delegate = self
         return vm
@@ -189,7 +189,6 @@ final class NewDebtViewController: UIViewController {
     
     @objc
     func customerSelectionTapped() {
-        print("tapped selection")
         let bottomSheetVC = CustomerBottomSheetController()
         bottomSheetVC.delegate = self
         

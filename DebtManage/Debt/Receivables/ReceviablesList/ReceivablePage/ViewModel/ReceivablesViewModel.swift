@@ -16,9 +16,6 @@ final class ReceivablesViewModel {
     weak var delegate: ReceivablesViewModelDelegate?
     
     private let session: Session = .shared
-    private(set) var selectedCustomerIndex: Int = 0
-    private(set) var sectionModel: SectionModel?
-    
     private let receivableRepository: ReceivablesRepository
     
     init(receivableRepository: ReceivablesRepository) {
@@ -46,11 +43,9 @@ extension ReceivablesViewModel { //Bu kod Session-dakı datanı ViewModel vasit�
     var sections: [SectionDebt] {
         return session.sectionModel
     }
-}
-
-extension ReceivablesViewModel {//borc ode button
-    func customerDebt() {
-        let tappedSectionModel = SectionModel(sectionIndex: selectedCustomerIndex)
-        self.sectionModel = tappedSectionModel
+    
+    var debts: [NewDebts] {
+        return session.debtsModel
     }
 }
+

@@ -139,13 +139,33 @@ extension ReceivablesViewController: ReceivablesViewModelDelegate {
 }
 
 extension ReceivablesViewController: HeaderCellDelegate {
+
     func didSelectHeaderIndex(section: Int) {
-        print(viewModel.sections[section].data)
+        let selectedItems = viewModel.sections[section].data
+      
+        
+        let bottomSheetVC = SectionDebtBottomSheetController()
+        bottomSheetVC.viewModel.setItems(items: selectedItems)
+        
+        if let sheet = bottomSheetVC.sheetPresentationController {
+            sheet.detents = [
+                .medium()
+            ]
+            
+            sheet.prefersGrabberVisible = true
+        }
+        present(bottomSheetVC, animated: true, completion: nil)
     }
-//    private func showDetail() {
-//        let vc = DeleteDebtBootomSheet()
-//        vc.viewModel.setModel(item: viewModel.sectionModel)
-//        show(vc, sender: self)
-//    }
+    
+    func showSectionsData() {
+        
+    }
+    
+    
+    
+}
+
+extension ReceivablesViewController {
+    
 }
 

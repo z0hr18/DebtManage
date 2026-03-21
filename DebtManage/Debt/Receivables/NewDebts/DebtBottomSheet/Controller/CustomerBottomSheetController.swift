@@ -28,11 +28,11 @@ class CustomerBottomSheetController: UIViewController {
         super.viewDidLoad()
         setupTableView()
     }
-    
-    private var viewModel: CustomerBottomSheetVM {
-        let viewModel = CustomerBottomSheetVM()
-        return viewModel
-    }
+   
+    private lazy var viewModel: CustomerBottomSheetVM = {
+        let vm = CustomerBottomSheetVM()
+        return vm
+    }()
     
     private func setupTableView() {
         view.anchor(view: tableView) { tableView in
