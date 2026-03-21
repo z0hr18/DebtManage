@@ -314,7 +314,6 @@ extension NewDebtViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 extension NewDebtViewController: NewDebtViewModelDelegate {
     func didSaveDebts() {
         navigationController?.popViewController(animated: true)
-        print("debts saved")
     }
 
     func didError(error: ErrorList) {

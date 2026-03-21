@@ -22,21 +22,19 @@ final class NewDebtViewModel {
     weak var delegate: NewDebtViewModelDelegate?
     private let session: Session = .shared
     
-   
+    
     
     func saveNewDebt(fullName: String, price: Double, currency: String, description: String) {
-        let newDebt = NewDebts(customer: fullName, amount: price, currency: currency, date: Date(), note: description)
-        session.addNewSectionDebtCustomer(item: newDebt)
-//        session.addDebt(newDebt)
-        print("SECTION COUNT:", session.sectionModel.count)
-
+        let newDebts = NewDebts(customer: fullName, amount: price, currency: currency, date: Date(), note: description)
+        if let sectionIndex = session.sectionModel.firstIndex(where: {$0.sectionName == fullName}) {
+            session.addItem(index: sectionIndex, item: newDebts)
+        } else {
+            let section = SectionDebt(sectionName: fullName, data: [newDebts])
+            session.addSectionItem(item: section)
+        }
         delegate?.didSaveDebts()
     }
-    
-    func setModel(item: SectionModel?) {
-        self.sectionModel = item
-    }
-    
+        
     func updateCurrency(index: Int) {
         selectedCurrency = currencies[index]
     }

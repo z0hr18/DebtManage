@@ -44,7 +44,6 @@ final class ReceivablesViewModel {
 
 extension ReceivablesViewModel { //Bu kod Session-dakı datanı ViewModel vasitəsilə oxumaq üçündür
     var sections: [SectionDebt] {
-        print("SECTION COUNT:", session.sectionModel.count)
         return session.sectionModel
     }
 }

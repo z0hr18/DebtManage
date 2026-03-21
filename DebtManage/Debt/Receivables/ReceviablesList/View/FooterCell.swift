@@ -9,9 +9,16 @@ import UIKit
 
 class FooterCell: UITableViewHeaderFooterView {
     
+    private let lineView: UIView = {
+        let v = UIView()
+        v.backgroundColor = .lightGray
+        v.translatesAutoresizingMaskIntoConstraints = false
+        return v
+    }()
+    
     private let aznLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 16)
+        label.font = .boldSystemFont(ofSize: 14)
         label.textColor = .black
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -19,7 +26,7 @@ class FooterCell: UITableViewHeaderFooterView {
     
     private let usdLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 16)
+        label.font = .boldSystemFont(ofSize: 14)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -27,14 +34,14 @@ class FooterCell: UITableViewHeaderFooterView {
     
     private let tlLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 16)
+        label.font = .boldSystemFont(ofSize: 14)
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     private let eurLabel: UILabel = {
         let label = UILabel()
-        label.font = .boldSystemFont(ofSize: 16)
+        label.font = .boldSystemFont(ofSize: 14)
         label.textAlignment = .right
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
@@ -50,13 +57,18 @@ class FooterCell: UITableViewHeaderFooterView {
     }
     
     private func setupUI() {
-        
+        contentView.addSubview(lineView)
         contentView.addSubview(aznLabel)
         contentView.addSubview(tlLabel)
         contentView.addSubview(usdLabel)
         contentView.addSubview(eurLabel)
         
         NSLayoutConstraint.activate([
+            
+            lineView.heightAnchor.constraint(equalToConstant: 1),
+            lineView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            lineView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            lineView.topAnchor.constraint(equalTo: contentView.topAnchor),
             
             aznLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
             aznLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8),
@@ -76,17 +88,25 @@ class FooterCell: UITableViewHeaderFooterView {
     }
     
     func configure(items: [NewDebts]) {
-        //map giller ile filterlemek ve yoxlayib toplamaq currency-e gore
-     
+        let aznItems = items.filter({$0.currency == "AZN"})
+        let aznAmount = aznItems.compactMap({$0.amount}).reduce(0,+)
+        let aznFormatter = String(format: "%.2f", aznAmount)
+        aznLabel.text = "\(aznFormatter) AZN"
         
-//        
-//        aznLabel.text = "\(azn) AZN"
-//        usdLabel.text = "\(usd) USD"
-//        tlLabel.text = "\(tl) TL"
-//        eurLabel.text = "\(eur) EUR"
-    }
-    
-    
-    //private sum calculate method -> string
+        let usdItems = items.filter({$0.currency == "USD"})
+        let usdAmount = usdItems.compactMap({$0.amount}).reduce(0,+)
+        let usdFormatter = String(format: "%.2f", usdAmount)
+        usdLabel.text = "\(usdFormatter) USD"
+        
+        let tlItems = items.filter({$0.currency == "TL"})
+        let tlAmount = tlItems.compactMap({$0.amount}).reduce(0,+)
+        let tlFormatter = String(format: "%.2f", tlAmount)
+        tlLabel.text = "\(tlFormatter) TL"
 
+        
+        let eurItems = items.filter({$0.currency == "EUR"})
+        let eurAmount = eurItems.compactMap({$0.amount}).reduce(0,+)
+        let eurFormatter = String(format: "%.2f", eurAmount)
+        eurLabel.text = "\(eurFormatter) EUR"
+    }
 }

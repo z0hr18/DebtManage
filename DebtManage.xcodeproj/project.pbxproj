@@ -27,6 +27,7 @@
 		8CA5C1382F6079EB0075180A /* AnchorKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5C12E2F6079EB0075180A /* AnchorKit.swift */; };
 		8CA5C1392F6079EB0075180A /* UIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5C1332F6079EB0075180A /* UIViewController.swift */; };
 		8CA5C13A2F6079EB0075180A /* UIStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CA5C12F2F6079EB0075180A /* UIStackView.swift */; };
+		8CD633E02F6EC8E200BE491F /* UIViewController+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD633DF2F6EC8CF00BE491F /* UIViewController+Ext.swift */; };
 		8CFE00022F62E90D00C6A52B /* ReceivablesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFEFFFA2F62E90D00C6A52B /* ReceivablesViewController.swift */; };
 		8CFE00032F62E90D00C6A52B /* NewDebts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFEFFFC2F62E90D00C6A52B /* NewDebts.swift */; };
 		8CFE00042F62E90D00C6A52B /* ReceivablesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFEFFFF2F62E90D00C6A52B /* ReceivablesViewModel.swift */; };
@@ -72,6 +73,7 @@
 		8CA5C1312F6079EB0075180A /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		8CA5C1322F6079EB0075180A /* UIView+Stacking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Stacking.swift"; sourceTree = "<group>"; };
 		8CA5C1332F6079EB0075180A /* UIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.swift; sourceTree = "<group>"; };
+		8CD633DF2F6EC8CF00BE491F /* UIViewController+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Ext.swift"; sourceTree = "<group>"; };
 		8CFE00162F63132000C6A52B /* CustomerBottomSheetVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerBottomSheetVM.swift; sourceTree = "<group>"; };
 		8CFE00192F63132300C6A52B /* CustomerBottomSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerBottomSheetCell.swift; sourceTree = "<group>"; };
 		8CFE001C2F63132600C6A52B /* CustomerBottomSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerBottomSheetController.swift; sourceTree = "<group>"; };
@@ -505,6 +507,7 @@
 		8CFEFFF72F62E90300C6A52B /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				8CD633DF2F6EC8CF00BE491F /* UIViewController+Ext.swift */,
 				8CFEFFF52F62E90300C6A52B /* UIview+Ext.swift */,
 				8CFEFFF62F62E90300C6A52B /* Userdefaults+Ext.swift */,
 			);
@@ -638,6 +641,7 @@
 				8CFEFFF92F62E90300C6A52B /* Userdefaults+Ext.swift in Sources */,
 				8C44B3812F51D1BD004E3CA4 /* CustomersRepository.swift in Sources */,
 				8C1B4E6A2F34F34C00FDBE1F /* SceneDelegate.swift in Sources */,
+				8CD633E02F6EC8E200BE491F /* UIViewController+Ext.swift in Sources */,
 				8CFEFFF42F62E90000C6A52B /* BaseRepository.swift in Sources */,
 				8CFE006F2F642D1600C6A52B /* FooterCell.swift in Sources */,
 				8CA5BF982F5B4D6E0075180A /* Session.swift in Sources */,

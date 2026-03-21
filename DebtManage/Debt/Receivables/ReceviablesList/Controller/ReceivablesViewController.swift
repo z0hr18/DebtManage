@@ -15,8 +15,9 @@ class ReceivablesViewController: UIViewController {
         view.dataSource = self
         view.register(ReceivablesCell.self)
         view.register(HeaderCell.self, forHeaderFooterViewReuseIdentifier: HeaderCell.description())
-        //        view.register(FooterCell.self, forHeaderFooterViewReuseIdentifier: FooterCell.description())
+        view.register(FooterCell.self, forHeaderFooterViewReuseIdentifier: FooterCell.description())
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.delaysContentTouches = false
         return view
     }()
     
@@ -39,9 +40,7 @@ class ReceivablesViewController: UIViewController {
     
     private func setupUIConfiguration() {
         view.backgroundColor = .white
-        title = "Alacaqlar"
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .always
+        setLargeTitle(title: "Alacaqlar")
         viewModel.readData()
         
         let addButton = UIBarButtonItem(
@@ -98,7 +97,8 @@ extension ReceivablesViewController {
         let sectionName = viewModel.sections[section].sectionName
         
         guard let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderCell.description()) as? HeaderCell else { return nil }
-        
+        header.tag = section
+        header.delegate = self
         header.cellConfig(fullName: sectionName)
         
         return header
@@ -112,21 +112,21 @@ extension ReceivablesViewController {
 }
 
 // MARK: - FOOTER CELL
-//extension ReceivablesViewController {
-//    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//        guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: FooterCell.description()) as? FooterCell else { return nil }
-//
-//        let debts = viewModel.sections[section].data
-//
-//        footer.configure(items: debts)
-//
-//        return footer
-//    }
-//
-//    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        return 50
-//    }
-//}
+extension ReceivablesViewController {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        guard let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: FooterCell.description()) as? FooterCell else { return nil }
+
+        let debts = viewModel.sections[section].data
+
+        footer.configure(items: debts)
+
+        return footer
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 50
+    }
+}
 
 extension ReceivablesViewController: ReceivablesViewModelDelegate {
     func reloadData() {
@@ -138,16 +138,14 @@ extension ReceivablesViewController: ReceivablesViewModelDelegate {
     }
 }
 
-//extension ReceivablesViewController: HeaderCellDelegate {
-//    func didSelectHeaderIndex(section: Int) {
-//        viewModel.customerDebt()
-//    }
+extension ReceivablesViewController: HeaderCellDelegate {
+    func didSelectHeaderIndex(section: Int) {
+        print(viewModel.sections[section].data)
+    }
 //    private func showDetail() {
 //        let vc = DeleteDebtBootomSheet()
 //        vc.viewModel.setModel(item: viewModel.sectionModel)
 //        show(vc, sender: self)
 //    }
-    
-    
-//}
+}
 
