@@ -8,5 +8,9 @@
 import Foundation
 
 final class PaymentsViewModel {
+    private let session: Session = .shared
     
+    var items: [NewDebts] {
+       return session.paidDebts
+    }
 }

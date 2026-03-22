@@ -19,7 +19,7 @@ final class SectionBottomSheetVM {
     }
     
     var items: [NewDebts] {
-        sectionDebt
+        return sectionDebt
     }
     
     

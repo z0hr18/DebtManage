@@ -85,8 +85,8 @@ extension Session {
     }
     
     func updateDebt(sectionIndex: Int, rowIndex: Int, paidAmount: Double) {
-        var currentAmount = sectionModel[sectionIndex].data[rowIndex].amount
-        var seasonAmount = currentAmount - paidAmount
+        let currentAmount = sectionModel[sectionIndex].data[rowIndex].amount
+        let seasonAmount = currentAmount - paidAmount
         sectionModel[sectionIndex].data[rowIndex].amount = seasonAmount
         saveDataSectionDebts()
     }
