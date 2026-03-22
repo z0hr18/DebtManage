@@ -1,14 +1,14 @@
 //
-//  SectionDebtBottomSheetCell.swift
+//  PaymentsCell.swift
 //  DebtManage
 //
-//  Created by Zohra Guliyeva on 3/21/26.
+//  Created by Zohra Guliyeva on 3/22/26.
 //
 
 import UIKit
 
-class SectionDebtBottomSheetCell: UITableViewCell {
-    
+class PaymentsCell: UITableViewCell {
+
     private let descriptionLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 16)
@@ -63,8 +63,9 @@ class SectionDebtBottomSheetCell: UITableViewCell {
     }
     
     func cellConfig(debts: NewDebts) {
-        let formatter = DateFormatter() //extention string
+        let formatter = DateFormatter()
         formatter.dateFormat = "dd.MM.yyyy HH:mm"
+
         
         if let date = debts.date {
             dateLabel.text = formatter.string(from: date)
@@ -75,4 +76,5 @@ class SectionDebtBottomSheetCell: UITableViewCell {
         amountLabel.text = "\(debts.amount) \(debts.currency)"
         descriptionLabel.text = debts.note
     }
+
 }

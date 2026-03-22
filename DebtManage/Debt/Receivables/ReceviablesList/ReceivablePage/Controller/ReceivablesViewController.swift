@@ -142,10 +142,10 @@ extension ReceivablesViewController: HeaderCellDelegate {
 
     func didSelectHeaderIndex(section: Int) {
         let selectedItems = viewModel.sections[section].data
-      
-        
+
         let bottomSheetVC = SectionDebtBottomSheetController()
-        bottomSheetVC.viewModel.setItems(items: selectedItems)
+        bottomSheetVC.delegate = self
+        bottomSheetVC.viewModel.configure(sectionDebt: selectedItems, sectionIndex: section)
         
         if let sheet = bottomSheetVC.sheetPresentationController {
             sheet.detents = [
@@ -157,15 +157,10 @@ extension ReceivablesViewController: HeaderCellDelegate {
         present(bottomSheetVC, animated: true, completion: nil)
     }
     
-    func showSectionsData() {
-        
+}
+
+extension ReceivablesViewController: SectionDebtBottomSheetDelegate {
+    func debtDidChange() {
+        tableView.reloadData()
     }
-    
-    
-    
 }
-
-extension ReceivablesViewController {
-    
-}
-

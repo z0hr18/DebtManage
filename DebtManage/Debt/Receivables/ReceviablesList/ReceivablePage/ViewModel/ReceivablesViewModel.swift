@@ -35,6 +35,7 @@ final class ReceivablesViewModel {
                 delegate?.didReceiveError(error: failure)
             }
         }
+        
     }
     
 }

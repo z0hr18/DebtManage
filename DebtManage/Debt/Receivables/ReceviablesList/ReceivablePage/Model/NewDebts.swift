@@ -14,7 +14,7 @@ struct SectionDebt: Codable {
 
 struct NewDebts: Codable {
     let customer: String
-    let amount: Double
+    var amount: Double
     let currency: String
     let date: Date?
     let note: String

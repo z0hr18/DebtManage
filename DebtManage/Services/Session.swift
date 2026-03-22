@@ -13,8 +13,8 @@ final class Session {
     private init() {}
     
     private(set) var customerModel: [Customers] = []
-    private(set) var sectionModel: [SectionDebt] = []
-    private(set) var debtsModel: [NewDebts] = []
+     var sectionModel: [SectionDebt] = []
+     var debtsModel: [NewDebts] = []
     
     func readAll() {
         readDataCustomer()
@@ -81,6 +81,13 @@ extension Session {
                 sectionModel = debts
             }
         }
+    }
+    
+    func updateDebt(sectionIndex: Int, rowIndex: Int, paidAmount: Double) {
+        var currentAmount = sectionModel[sectionIndex].data[rowIndex].amount
+        var seasonAmount = currentAmount - paidAmount
+        sectionModel[sectionIndex].data[rowIndex].amount = seasonAmount
+        saveDataSectionDebts()
     }
 }
 

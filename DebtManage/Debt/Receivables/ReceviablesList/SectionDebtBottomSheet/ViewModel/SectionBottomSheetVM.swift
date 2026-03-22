@@ -10,14 +10,30 @@ import UIKit
 final class SectionBottomSheetVM {
     private let session: Session = .shared
     
-    private(set) var items: [NewDebts] = []
+    private var sectionDebt: [NewDebts] = []
+    private var sectionIndex: Int = 0
     
-    func setItems(items: [NewDebts]) {
-        self.items = items
+    func configure(sectionDebt: [NewDebts], sectionIndex: Int) {
+        self.sectionDebt = sectionDebt
+        self.sectionIndex = sectionIndex
     }
     
-    var debts: [NewDebts] {
-        return session.debtsModel
+    var items: [NewDebts] {
+        sectionDebt
+    }
+    
+    
+    func payDebt(rowIndex: Int, paidAmount: Double) {
+        let current = sectionDebt[rowIndex].amount
+        let calculateAmound  = current - paidAmount
+        sectionDebt[rowIndex].amount = calculateAmound
+
+        session.updateDebt(sectionIndex: sectionIndex, rowIndex: rowIndex, paidAmount: paidAmount)
+    }
+    
+    
+    var sections: [SectionDebt] {
+        return session.sectionModel
     }
 }
 

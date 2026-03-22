@@ -36,6 +36,10 @@
 		8CD634102F6ED3FF00BE491F /* ReceivablesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD634072F6ED3FF00BE491F /* ReceivablesViewModel.swift */; };
 		8CD634122F6ED43700BE491F /* SectionBottomSheetVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD634112F6ED42A00BE491F /* SectionBottomSheetVM.swift */; };
 		8CD634142F6ED4FD00BE491F /* SectionDebtBottomSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD634132F6ED4FD00BE491F /* SectionDebtBottomSheetCell.swift */; };
+		8CD6341D2F7036D800BE491F /* PaymentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD6341C2F7036D800BE491F /* PaymentsCell.swift */; };
+		8CD634202F70370700BE491F /* PaymentsHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD6341F2F70370700BE491F /* PaymentsHeaderCell.swift */; };
+		8CD634222F70371600BE491F /* PaymentsFooterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD634212F70371600BE491F /* PaymentsFooterCell.swift */; };
+		8CD634242F7044AD00BE491F /* Payments.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD634232F70442900BE491F /* Payments.swift */; };
 		8CFE00182F63132000C6A52B /* CustomerBottomSheetVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE00162F63132000C6A52B /* CustomerBottomSheetVM.swift */; };
 		8CFE001B2F63132300C6A52B /* CustomerBottomSheetCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE00192F63132300C6A52B /* CustomerBottomSheetCell.swift */; };
 		8CFE001E2F63132600C6A52B /* CustomerBottomSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CFE001C2F63132600C6A52B /* CustomerBottomSheetController.swift */; };
@@ -84,6 +88,10 @@
 		8CD634072F6ED3FF00BE491F /* ReceivablesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceivablesViewModel.swift; sourceTree = "<group>"; };
 		8CD634112F6ED42A00BE491F /* SectionBottomSheetVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionBottomSheetVM.swift; sourceTree = "<group>"; };
 		8CD634132F6ED4FD00BE491F /* SectionDebtBottomSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionDebtBottomSheetCell.swift; sourceTree = "<group>"; };
+		8CD6341C2F7036D800BE491F /* PaymentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsCell.swift; sourceTree = "<group>"; };
+		8CD6341F2F70370700BE491F /* PaymentsHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsHeaderCell.swift; sourceTree = "<group>"; };
+		8CD634212F70371600BE491F /* PaymentsFooterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsFooterCell.swift; sourceTree = "<group>"; };
+		8CD634232F70442900BE491F /* Payments.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Payments.swift; sourceTree = "<group>"; };
 		8CFE00162F63132000C6A52B /* CustomerBottomSheetVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerBottomSheetVM.swift; sourceTree = "<group>"; };
 		8CFE00192F63132300C6A52B /* CustomerBottomSheetCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerBottomSheetCell.swift; sourceTree = "<group>"; };
 		8CFE001C2F63132600C6A52B /* CustomerBottomSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerBottomSheetController.swift; sourceTree = "<group>"; };
@@ -233,20 +241,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		8C1B4E9B2F34F45B00FDBE1F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Model;
-			sourceTree = "<group>";
-		};
-		8C1B4E9C2F34F45B00FDBE1F /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		8C1B4E9D2F34F45B00FDBE1F /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
@@ -259,8 +253,8 @@
 			isa = PBXGroup;
 			children = (
 				8C1B4E9A2F34F45B00FDBE1F /* Controller */,
-				8C1B4E9B2F34F45B00FDBE1F /* Model */,
-				8C1B4E9C2F34F45B00FDBE1F /* View */,
+				8CD6341E2F7036E100BE491F /* Model */,
+				8CD6341A2F7036BC00BE491F /* View */,
 				8C1B4E9D2F34F45B00FDBE1F /* ViewModel */,
 			);
 			path = Payments;
@@ -406,6 +400,24 @@
 				8CD634082F6ED3FF00BE491F /* ViewModel */,
 			);
 			path = ReceivablePage;
+			sourceTree = "<group>";
+		};
+		8CD6341A2F7036BC00BE491F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8CD6341C2F7036D800BE491F /* PaymentsCell.swift */,
+				8CD6341F2F70370700BE491F /* PaymentsHeaderCell.swift */,
+				8CD634212F70371600BE491F /* PaymentsFooterCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8CD6341E2F7036E100BE491F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8CD634232F70442900BE491F /* Payments.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		8CFE00012F62E90D00C6A52B /* ReceviablesList */ = {
@@ -682,10 +694,14 @@
 				8C1B4E692F34F34C00FDBE1F /* AppDelegate.swift in Sources */,
 				8CFEFFF82F62E90300C6A52B /* UIview+Ext.swift in Sources */,
 				8CFEFFF92F62E90300C6A52B /* Userdefaults+Ext.swift in Sources */,
+				8CD634222F70371600BE491F /* PaymentsFooterCell.swift in Sources */,
+				8CD634202F70370700BE491F /* PaymentsHeaderCell.swift in Sources */,
 				8C44B3812F51D1BD004E3CA4 /* CustomersRepository.swift in Sources */,
 				8C1B4E6A2F34F34C00FDBE1F /* SceneDelegate.swift in Sources */,
 				8CD633E02F6EC8E200BE491F /* UIViewController+Ext.swift in Sources */,
+				8CD634242F7044AD00BE491F /* Payments.swift in Sources */,
 				8CFEFFF42F62E90000C6A52B /* BaseRepository.swift in Sources */,
+				8CD6341D2F7036D800BE491F /* PaymentsCell.swift in Sources */,
 				8CA5BF982F5B4D6E0075180A /* Session.swift in Sources */,
 				8C1B4EC72F3A366E00FDBE1F /* CheckoutViewController.swift in Sources */,
 				8CFE001E2F63132600C6A52B /* CustomerBottomSheetController.swift in Sources */,
